@@ -1,12 +1,15 @@
 from django.shortcuts import render
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions
 from .models import Business
 from .serializers import BusinessSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from .permissions import IsOwnerOrReadOnly 
 
+# list all businesses 
 class BusinessListView(generics.ListAPIView):
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer 
+    permission_classes = [permissions.IsAuthenticated]
 
     filter_backends = [
         DjangoFilterBackend,
@@ -18,3 +21,10 @@ class BusinessListView(generics.ListAPIView):
     filterset_fields = ['category', 'owner', 'location']
     ordering_fields = ['name', 'created_at'] 
 
+# Retrieve business by id
+class BusinessDetailView(generics.RetrieveAPIView):
+    queryset = Business.objects.all()
+    serializer_class = BusinessSerializer
+    lookup_field = "id"
+    permission_classes = [permissions.IsAuthenticated]
+    
