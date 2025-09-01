@@ -22,9 +22,18 @@ class BusinessListView(generics.ListAPIView):
     ordering_fields = ['name', 'created_at'] 
 
 # Retrieve business by id
-class BusinessDetailView(generics.RetrieveAPIView):
+class BusinessDetailView(generics.RetrieveAPIView): 
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer
     lookup_field = "id"
     permission_classes = [permissions.IsAuthenticated]
-    
+
+# Create business instance 
+class BusinessCreateView(generics.CreateAPIView):
+    queryset = Business.objects.all()
+    serializer_class = BusinessSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        
