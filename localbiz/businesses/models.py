@@ -15,5 +15,8 @@ class Business(models.Model):
     website = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["name"] 
+
     def __str__(self):
         return f"Business {self.name} owned by {self.owner.username}"
