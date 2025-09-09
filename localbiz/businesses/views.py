@@ -42,14 +42,16 @@ class BusinessCreateView(generics.CreateAPIView):
 class BusinessUPdateView(generics.UpdateAPIView):
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer
+    lookup_field = 'pk'
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+ 
 
 # Delete business
 class BusinessDeleteView(generics.DestroyAPIView):
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
-
+ 
 # List all business categories
 class CategoryListCreateView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
