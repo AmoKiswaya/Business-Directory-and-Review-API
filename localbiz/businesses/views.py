@@ -9,7 +9,7 @@ from .permissions import IsOwnerOrReadOnly
 class BusinessListView(generics.ListAPIView):
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer 
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     filter_backends = [
         DjangoFilterBackend,
@@ -50,7 +50,9 @@ class BusinessUPdateView(generics.UpdateAPIView):
 class BusinessDeleteView(generics.DestroyAPIView):
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer
+    lookup_field = 'pk'
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+
  
 # List all business categories
 class CategoryListCreateView(generics.ListCreateAPIView):
