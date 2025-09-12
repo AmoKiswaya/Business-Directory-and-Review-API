@@ -70,7 +70,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'ORDERING_PARAM': 'ordering',
     'DEFAULT_PERMISSION_CLASS': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 } 
 

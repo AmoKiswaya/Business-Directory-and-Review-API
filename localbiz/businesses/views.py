@@ -25,7 +25,7 @@ class BusinessListView(generics.ListAPIView):
 class BusinessDetailView(generics.RetrieveAPIView): 
     queryset = Business.objects.all()
     serializer_class = BusinessSerializer
-    lookup_field = "id"
+    lookup_field = "pk"
     permission_classes = [permissions.IsAuthenticated]
 
 # Create business instance 

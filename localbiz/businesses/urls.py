@@ -10,7 +10,7 @@ from .views import (
 
 urlpatterns = [
     path("businesses/", BusinessListView.as_view(), name='business-list'),
-    path('businesses/<int:id>/', BusinessDetailView.as_view(), name='business-detail'),
+    path('businesses/<int:pk>/', BusinessDetailView.as_view(), name='business-detail'),
     path('businesses/create/', BusinessCreateView.as_view(), name='business-create'),
     path('businesses/<int:pk>/update/', BusinessUPdateView.as_view(), name='business-update'),
     path('businesses/<int:pk>/delete/', BusinessDeleteView.as_view(), name='business-delete'),
